@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,redirect,get_object_or_404
 from .models import Lugar
 from .forms import ContactoForm,LugarForm
 
@@ -37,7 +37,7 @@ def registro(request):
 
     return render(request, "OnboardApp/registro.html")
 
-def agregar_producto(request):
+def agregar_lugar(request):
     data = {
         'form': LugarForm()
     }
@@ -57,3 +57,26 @@ def listar_lugares(request):
         'lugares': lugares
     }
     return render(request,"OnboardApp/lugares/listar.html",data)
+
+def modificar_lugar(request,id):
+
+    lugar = get_object_or_404(Lugar,id=id)
+
+    data = {
+        'form': LugarForm(instance=lugar)
+    }
+
+    if request.method == 'POST':
+        formulario = LugarForm(data=request.POST,instance=lugar,files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="Listar_lugares")
+        data["form"] = formulario
+
+
+    return render(request,"OnboardApp/lugares/modificar.html",data)
+
+def eliminar_lugar(request,id):
+    lugar = get_object_or_404(Lugar,id=id)
+    lugar.delete()
+    return redirect(to="Listar_lugares")

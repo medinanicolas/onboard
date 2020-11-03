@@ -37,11 +37,15 @@
         {% load humanize %}
         {% for i in lugares %}
             {% if i.imagen %}
-            <a data-fancybox="gallery" href="{{ i.imagen.url}}">
+            <a data-fancybox="gallery" href="{{ i.imagen.url}}" class="text-decoration-none">
+                {% if i.disponible %}
                 <img src="{{ i.imagen.url}}">
-                <p class="precio">${{ i.precio | intcomma}}</p>
-                <p class="nombre">{{ i.nombre | capfirst}}</p>
-                <p class="pais">{{ i.pais | title}}</p>
+                {% else %}
+                <img src="{{ i.imagen.url}}" style="filter: grayscale(100%);">
+                {% endif %}
+                <p class="precio ">Precio: ${{ i.precio | intcomma}}</p>
+                <p class="nombre">Nombre: {{ i.nombre | capfirst}}</p>
+                <p class="pais">Pais: {{ i.pais | title}}</p>
             </a>
             {% endif %}
         {% endfor %}

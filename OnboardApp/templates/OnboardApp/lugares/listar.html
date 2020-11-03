@@ -12,7 +12,7 @@
     {% block content %}
     {% load humanize %}
     <br><br>
-    <div class="row">
+    <div class="row" style="z-index:1">
         <div class="col-12 col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
@@ -24,6 +24,7 @@
                             <th>Precio</th>
                             <th>Pais</th>
                             <th>¿Disponible?</th>
+                            <th>Opciones</th>
                         </tr>
                         {% for i in lugares %}
                 
@@ -37,6 +38,10 @@
                                 {% else %}
                                 No
                                 {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'Modificar_lugar' i.id %}" class="btn btn-info btn-sm">Modificar</a>
+                                <a href="{% url 'Eliminar_lugar' i.id %}" class="btn btn-danger btn-sm">Eliminar</a>
                             </td>
                         </tr>
                         {% endfor %}

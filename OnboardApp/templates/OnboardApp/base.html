@@ -29,6 +29,8 @@
             <li class="{% if request.path == '/reservas/' %}active{% endif %}"><a href="{% url 'Reservas' %}">Reservas</a></li>
             <li class="{% if request.path == '/registro/' %}active{% endif %}"><a href="{% url 'Registro' %}">Registro</a></li>
             <li class="{% if request.path == '/contacto/' %}active{% endif %}"><a href="{% url 'Contacto' %}">Contacto</a></li>
+            <li><a href="{% url 'Agregar_lugar' %}">Agregar lugar</a></li>
+            <li><a href="{% url 'Listar_lugares' %}">Listar lugares</a></li>
         </ul>
         <span class="btn_menu">
             <i class="fa  fa-bars"></i>
