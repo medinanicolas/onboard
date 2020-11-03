@@ -23,6 +23,7 @@ from OnboardApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('OnboardApp.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 if settings.DEBUG:
