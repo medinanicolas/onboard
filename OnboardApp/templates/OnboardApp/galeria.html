@@ -2,11 +2,64 @@
 
 {% load static %}
 
-  {% block content %}
+    {% block css%}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="{% static 'OnboardApp/css/galeria.css' %}">
 
-  <div>
-    <p>Galeria</p>
-  </div>
+    {% endblock %}
 
+    {% block content %}
 
-  {% endblock %}
+    <div id="contenido">
+        <br>
+        <div class="cuadro"> 
+        
+        </div>
+        <div class="slider">
+            <div>
+                <img src="{% static 'OnboardApp/img/banner/banner1.png' %}" alt="">
+            </div>
+            <div>
+                <img src="{% static 'OnboardApp/img/banner/banner2.png' %}" alt="">
+            </div>
+            <div>
+                <img src="{% static 'OnboardApp/img/banner/banner3.png' %}" alt="">
+            </div>
+        </div>
+        <p class="lugares">Lugares</p>
+        <hr>
+        <br><br>
+        <div class="galeria">
+        {% load humanize %}
+        {% for i in lugares %}
+            {% if i.imagen %}
+            <a data-fancybox="gallery" href="{{ i.imagen.url}}">
+                <img src="{{ i.imagen.url}}">
+                <p class="precio">${{ i.precio | intcomma}}</p>
+                <p class="nombre">{{ i.nombre | capfirst}}</p>
+                <p class="pais">{{ i.pais | title}}</p>
+            </a>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+    <br><br>
+
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.slider').bxSlider({
+                mode: 'horizontal',//horizontal, vertical, fade
+                auto: true,
+                pause: 2000
+            });
+        });
+    </script>
+
+    {% endblock %}
