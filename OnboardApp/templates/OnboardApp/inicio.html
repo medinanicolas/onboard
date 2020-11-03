@@ -1,0 +1,81 @@
+{% extends "OnboardApp/base.html" %}
+
+{% load static %}
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'OnboardApp/css/inicio.css' %}">
+  {% endblock %}
+
+  {% block content %}
+    <!-- Panel -->
+    <section id="intro" >
+        <div class="contenedor">
+            <div class="contenedor-titulo">
+                <div class="titulo">
+                    <h1>Llevando nuestros clientes a su mejor destino</h1>
+                    <p>En OnBoard nos aseguramos de que tu viaje sea una experiencia más que inolvidable. Paga menos y disfruta más.</p>
+                    <div class="botones">
+                        <a href="" class="planes">Ver planes</a>
+                        <a href="" class="reservation">Reservas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  <!-- Nosotros -->
+    <section id="nosotros">
+        <div class="contenedor">
+            <div class="izquierda">
+                <p class="nosotros">Nosotros</p>
+                <hr>
+                <h2>Bienvenido a bordo</h2>
+                <p class="texto">OnBoard es una agencia de viajes turisticos y comerciales con más de 15 años en el rubro, por lo que contamos con los mejores estandares de calidad y una variada paleta de oportunidades hechas a la medida para cada tipo de pasajero.
+                <p class="texto">¡No te quedes abajo! Ven con nosotros y disfruta de tu mejor destino.</p>
+            </div>
+            <div class="derecha">
+                <img src="{% static 'OnboardApp/img/story.jpg' %}" alt="">
+            </div>
+        </div>
+    </section>
+  <!-- Lugares -->
+
+  <!-- Testimonios -->
+  <section id="testimonials">
+    <div class="contenedor">
+        <p class="titulo">Testimonios</p>
+        <hr>
+        <h2>Qué Opinan Nuestros Clientes</h2>
+        <div class="contenedor-testimonials">
+            <div class="testimonial">
+                <img src="{% static 'OnboardApp/img/estrellas.png' %}" alt="">
+                <h3>“Excelente. Muy recomendado!”</h3>
+                <p class="texto">“Excelente atención. Mucha amabilidad y empatía, full recomendado para descansar un ratito junto a tu familia. Ma-ra-vi-llo-so.“
+                </p>
+                <p class="nombre">Leandra</p>
+            </div>
+            <div class="testimonial">
+                <img src="{% static 'OnboardApp/img/estrellas.png' %}" alt="">
+                <h3>“Muy buena experiencia”</h3>
+                <p class="texto">“Casi me comen los canibales pero como buen futre que soy fui protegido por el brazo armado del capitalismo. Excelente servicio!“
+                </p>
+                <p class="nombre">Maximiliano Angelini Angelini</p>
+            </div>
+            <div class="testimonial">
+                <img src="{% static 'OnboardApp/img/estrellas.png' %}" alt="">
+                <h3>“Precio y calidad</h3>
+                <p class="texto">“Muy accesible, me sentí como nunca antes.“
+                </p>
+                <p class="nombre">José</p>
+            </div>
+            <div class="testimonial">
+                <img src="{% static 'OnboardApp/img/estrellas.png' %}" alt="">
+                <h3>“Espectacular”</h3>
+                <p class="texto">“Recomiendo OnBoard 100% en un link.“
+                </p>
+                <p class="nombre">Bot Martinez</p>
+            </div>
+        </div>
+    </div>
+  </section>  
+
+
+  {% endblock %}
