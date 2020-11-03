@@ -1,6 +1,7 @@
 from django.urls import path
 from OnboardApp import views
 
+
 urlpatterns = [
     path('',views.inicio,name="Inicio"),
     path('galeria',views.galeria,name="Galeria"),
