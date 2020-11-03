@@ -5,6 +5,9 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required,permission_required
+from django.contrib.auth.mixins import UserPassesTestMixin
+
 # Create your views here.
 
 def inicio(request):
@@ -33,7 +36,7 @@ def contacto(request):
             data["form"] =  formulario
     return render(request, "OnboardApp/contacto.html",data)
 
-
+@permission_required('OnboardApp.add_lugar')
 def agregar_lugar(request):
     data = {
         'form': LugarForm()
@@ -43,12 +46,15 @@ def agregar_lugar(request):
         if formulario.is_valid():
             formulario.save()
             messages.success(request,"Agregado correctamente")
-            return redirect(to="Listar_lugares")
+            if request.user.has_perm('OnboardApp.view_lugares'):
+                return redirect(to="Listar_lugares")
+            else:
+                return redirect(to="Inicio")
         else:
             data["form"] = formulario
  
     return render(request, "OnboardApp/lugares/agregar.html",data)
-
+@permission_required('OnboardApp.view_lugar')
 def listar_lugares(request):
     lugares = Lugar.objects.all()
     page = request.GET.get('page', 1)
@@ -64,7 +70,7 @@ def listar_lugares(request):
         'paginator': paginator
     }
     return render(request,"OnboardApp/lugares/listar.html",data)
-
+@permission_required('OnboardApp.change_lugar')
 def modificar_lugar(request,id):
 
     lugar = get_object_or_404(Lugar,id=id)
@@ -83,7 +89,7 @@ def modificar_lugar(request,id):
 
 
     return render(request,"OnboardApp/lugares/modificar.html",data)
-
+@permission_required('OnboardApp.delete_lugar')
 def eliminar_lugar(request,id):
     lugar = get_object_or_404(Lugar,id=id)
     lugar.delete()
