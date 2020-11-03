@@ -50,7 +50,7 @@
                             <th>¿Disponible?</th>
                             <th>Opciones</th>
                         </tr>
-                        {% for i in lugares %}
+                        {% for i in entity %}
                 
                         <tr>
                             <td>{{ i.nombre | title}}</td>
@@ -70,7 +70,10 @@
                         </tr>
                         {% endfor %}
                     </table>
-                    
+                    <div>
+                        <hr>
+                        {% include 'OnboardApp/paginator.html' %}
+                    </div>
                 </div>
             </div>
             <br><br>

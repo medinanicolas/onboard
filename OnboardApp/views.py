@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse,redirect,get_object_or_404
 from .models import Lugar
 from .forms import ContactoForm,LugarForm
 from django.contrib import messages
+from django.core.paginator import Paginator
+from django.http import Http404
 
 # Create your views here.
 
@@ -31,13 +33,6 @@ def contacto(request):
             data["form"] =  formulario
     return render(request, "OnboardApp/contacto.html",data)
 
-def reservas(request):
-
-    return render(request, "OnboardApp/reservas.html")
-
-def registro(request):
-
-    return render(request, "OnboardApp/registro.html")
 
 def agregar_lugar(request):
     data = {
@@ -56,8 +51,17 @@ def agregar_lugar(request):
 
 def listar_lugares(request):
     lugares = Lugar.objects.all()
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(lugares,5)
+        lugares = paginator.page(page)
+    except:
+        raise Http404
+
     data = {
-        'lugares': lugares
+        'entity': lugares,
+        'paginator': paginator
     }
     return render(request,"OnboardApp/lugares/listar.html",data)
 
