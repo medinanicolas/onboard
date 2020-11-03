@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse,redirect,get_object_or_404
 from .models import Lugar
 from .forms import ContactoForm,LugarForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -24,7 +25,8 @@ def contacto(request):
         formulario = ContactoForm(data=request.POST)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "Formulario Enviado"
+            messages.success(request,"Enviado correctamente")
+            return redirect(to="Inicio")
         else:
             data["form"] =  formulario
     return render(request, "OnboardApp/contacto.html",data)
@@ -45,7 +47,8 @@ def agregar_lugar(request):
         formulario = LugarForm(data=request.POST,files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            data["mensaje"] = "Guardado correctamente"
+            messages.success(request,"Agregado correctamente")
+            return redirect(to="Listar_lugares")
         else:
             data["form"] = formulario
  
@@ -70,6 +73,7 @@ def modificar_lugar(request,id):
         formulario = LugarForm(data=request.POST,instance=lugar,files=request.FILES)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request,"Modificado correctamente")
             return redirect(to="Listar_lugares")
         data["form"] = formulario
 
@@ -79,4 +83,5 @@ def modificar_lugar(request,id):
 def eliminar_lugar(request,id):
     lugar = get_object_or_404(Lugar,id=id)
     lugar.delete()
+    messages.success(request,"Eliminado correctamente")
     return redirect(to="Listar_lugares")

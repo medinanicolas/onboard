@@ -1,8 +1,32 @@
 {% extends "OnboardApp/base.html" %}
 
 {% load static %}
+
+    {% block scripts %}
+
+    <script>
+        function eliminarLugar(id){
+            swal.fire({
+                "title": "¿Estás seguro?",
+                "text": "Esta acción no se puede deshacer",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No,Cancelar",
+                "confirmButtonText": "Si, Eliminar",
+                "reverseButtons":true,
+                "confirmButtonColor":"#dc3545"
+            })
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href = "/eliminar-lugar/"+id+"/"
+                }
+            })
+        }
+    </script>
+
+    {% endblock %}
     {% block titulo %}
-    <title>Listado Lugares</title>
+        <title>Listado Lugares</title>
     {% endblock %}
 
     {% block css %}
@@ -41,7 +65,7 @@
                             </td>
                             <td>
                                 <a href="{% url 'Modificar_lugar' i.id %}" class="btn btn-info btn-sm">Modificar</a>
-                                <a href="{% url 'Eliminar_lugar' i.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                                <a href="#" onclick="eliminarLugar({{ i.id }})" class="btn btn-danger btn-sm">Eliminar</a>
                             </td>
                         </tr>
                         {% endfor %}
