@@ -64,8 +64,14 @@
                                 {% endif %}
                             </td>
                             <td>
+                                {% if perms.OnboardApp.change_lugar %}
                                 <a href="{% url 'Modificar_lugar' i.id %}" class="btn btn-info btn-sm">Modificar</a>
+                                {% endif %}
+                                {% if perms.OnboardApp.delete_lugar %}
                                 <a href="#" onclick="eliminarLugar({{ i.id }})" class="btn btn-danger btn-sm">Eliminar</a>
+                                {% endif %}
+                                
+                                
                             </td>
                         </tr>
                         {% endfor %}

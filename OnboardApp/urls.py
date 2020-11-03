@@ -10,4 +10,5 @@ urlpatterns = [
     path('listar-lugares/',views.listar_lugares,name='Listar_lugares'),
     path('modificar-lugar/<id>/',views.modificar_lugar,name='Modificar_lugar'),
     path('eliminar-lugar/<id>/',views.eliminar_lugar,name='Eliminar_lugar'),
+    path('registro/',views.registro,name='Registro'),
 ]
