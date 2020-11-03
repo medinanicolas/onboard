@@ -28,8 +28,21 @@
             <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'Inicio' %}">Inicio</a></li>
             <li class="{% if request.path == '/galeria/' %}active{% endif %}"><a href="{% url 'Galeria' %}">Galeria</a></li>
             <li class="{% if request.path == '/contacto/' %}active{% endif %}"><a href="{% url 'Contacto' %}">Contacto</a></li>
-            <li><a href="{% url 'Agregar_lugar' %}">Agregar lugar</a></li>
-            <li><a href="{% url 'Listar_lugares' %}">Listar lugares</a></li>
+            {% if user.is_authenticated %}
+
+                {% if perms.OnboardApp.add_lugar %}
+                    <li><a href="{% url 'Agregar_lugar' %}">Agregar lugar</a></li>
+                {% endif %}
+                {% if perms.OnboardApp.view_lugar %}
+                    <li><a href="{% url 'Listar_lugares' %}">Listar lugares</a></li>
+                {% endif %}
+
+
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                <li><a href="#">@{{ user.username }}</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+            {% endif %}
         </ul>
         <span class="btn_menu">
             <i class="fa  fa-bars"></i>
