@@ -27,6 +27,8 @@ body {
     align-items: center;
     border-bottom: 1px solid #fff;
     box-shadow: 5px 0 10px rgba(0,0,0,.3);
+    position: relative;
+    z-index: 99999999;
 }
 .menu .logo {
     color: #000;

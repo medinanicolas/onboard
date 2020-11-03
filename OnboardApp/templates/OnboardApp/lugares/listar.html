@@ -1,0 +1,84 @@
+{% extends "OnboardApp/base.html" %}
+
+{% load static %}
+
+    {% block scripts %}
+
+    <script>
+        function eliminarLugar(id){
+            swal.fire({
+                "title": "¿Estás seguro?",
+                "text": "Esta acción no se puede deshacer",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No,Cancelar",
+                "confirmButtonText": "Si, Eliminar",
+                "reverseButtons":true,
+                "confirmButtonColor":"#dc3545"
+            })
+            .then(function(result) {
+                if(result.isConfirmed){
+                    window.location.href = "/eliminar-lugar/"+id+"/"
+                }
+            })
+        }
+    </script>
+
+    {% endblock %}
+    {% block titulo %}
+        <title>Listado Lugares</title>
+    {% endblock %}
+
+    {% block css %}
+
+    {% endblock %}
+
+    {% block content %}
+    {% load humanize %}
+    <br><br>
+    <div class="row" style="z-index:1">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Listado de lugares</h2>
+                    <hr>
+                    <table class="table table-stripped table-hover table-responsive-sm">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Pais</th>
+                            <th>¿Disponible?</th>
+                            <th>Opciones</th>
+                        </tr>
+                        {% for i in entity %}
+                
+                        <tr>
+                            <td>{{ i.nombre | title}}</td>
+                            <td>${{ i.precio | intcomma}}</td>
+                            <td>{{i.pais | title}}</td>
+                            <td>
+                                {% if i.disponible %}
+                                Si
+                                {% else %}
+                                No
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'Modificar_lugar' i.id %}" class="btn btn-info btn-sm">Modificar</a>
+                                <a href="#" onclick="eliminarLugar({{ i.id }})" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <div>
+                        <hr>
+                        {% include 'OnboardApp/paginator.html' %}
+                    </div>
+                </div>
+            </div>
+            <br><br>
+        </div>
+    </div>
+    
+    
+    {% endblock %}
