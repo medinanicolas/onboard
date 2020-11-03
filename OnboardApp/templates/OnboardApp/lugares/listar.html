@@ -1,0 +1,52 @@
+{% extends "OnboardApp/base.html" %}
+
+{% load static %}
+    {% block titulo %}
+    <title>Listado Lugares</title>
+    {% endblock %}
+
+    {% block css %}
+
+    {% endblock %}
+
+    {% block content %}
+    {% load humanize %}
+    <br><br>
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Listado de lugares</h2>
+                    <hr>
+                    <table class="table table-stripped table-hover table-responsive-sm">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Pais</th>
+                            <th>¿Disponible?</th>
+                        </tr>
+                        {% for i in lugares %}
+                
+                        <tr>
+                            <td>{{ i.nombre | title}}</td>
+                            <td>${{ i.precio | intcomma}}</td>
+                            <td>{{i.pais | title}}</td>
+                            <td>
+                                {% if i.disponible %}
+                                Si
+                                {% else %}
+                                No
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    
+                </div>
+            </div>
+            <br><br>
+        </div>
+    </div>
+    
+    
+    {% endblock %}
