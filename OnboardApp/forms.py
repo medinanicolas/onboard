@@ -17,13 +17,13 @@ class LugarForm(forms.ModelForm):
     nombre = forms.CharField(min_length=3,max_length=50)
     precio = forms.IntegerField(min_value=1,max_value=2000000)
 
-    def clean_nombre(self):
-        nombre = self.cleaned_data["nombre"]
-        existe = Lugar.objects.filter(nombre__iexact=nombre).exists()
+    # def clean_nombre(self):
+    #     nombre = self.cleaned_data["nombre"]
+    #     existe = Lugar.objects.filter(nombre__iexact=nombre).exists()
 
-        if existe:
-            raise ValidationError("Este nombre ya existe")
-        return nombre
+    #     if existe:
+    #         raise ValidationError("Este nombre ya existe")
+    #     return nombre
 
     class Meta:
         model = Lugar

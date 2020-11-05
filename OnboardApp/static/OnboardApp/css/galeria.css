@@ -4,6 +4,28 @@
     max-width: 1280px;
     min-height: 100vh;
 }
+.nombre{
+    color: #c29d62;
+    font-size: 24px;
+    margin-bottom: 15px;
+    margin: 0;
+    padding: 0;
+}
+.pais {
+    font-family: 'Playfair Display';
+    font-size: 24px;
+    font-weight: 100;
+    margin: 0;
+    padding: 0;
+}
+.precio {
+    color: #939393;
+    line-height: 30px;
+    margin-top: 20px;
+    padding: 5px;
+    margin: 0;
+    padding: 0;
+}
 
 .galeria {
     display: grid;
@@ -34,8 +56,8 @@ hr{
     border-color: #c29d63;
 }
 .bx-wrapper .bx-controls-direction a{
-    z-index:100
-};
+    z-index:100;
+}
 
 
 

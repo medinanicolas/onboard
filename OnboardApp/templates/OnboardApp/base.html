@@ -31,17 +31,17 @@
             {% if user.is_authenticated %}
 
                 {% if perms.OnboardApp.add_lugar %}
-                    <li><a href="{% url 'Agregar_lugar' %}">Agregar lugar</a></li>
+                    <li class="{% if request.path == '/agregar-lugar/' %}active{% endif %}"><a  href="{% url 'Agregar_lugar' %}">Agregar lugar</a></li>
                 {% endif %}
                 {% if perms.OnboardApp.view_lugar %}
-                    <li><a href="{% url 'Listar_lugares' %}">Listar lugares</a></li>
+                    <li class="{% if request.path == '/listar-lugares/' %}active{% endif %}"><a href="{% url 'Listar_lugares' %}">Listar lugares</a></li>
                 {% endif %}
 
 
                 <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
                 <li><a href="#">@{{ user.username }}</a></li>
             {% else %}
-                <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                <li class="{% if request.path == '/accounts/login/' %}active{% endif %}"><a href="{% url 'login' %}">Iniciar sesión</a></li>
             {% endif %}
         </ul>
         <span class="btn_menu">
