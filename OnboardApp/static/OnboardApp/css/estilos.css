@@ -13,6 +13,10 @@ body {
     background-color: #f4f4f4;
 }
 
+hr{
+    border-color: #c29d63;
+}
+
 .contenedor {
     width: 95%;
     max-width: 2560px;
@@ -20,11 +24,12 @@ body {
 }
 .menu {
     background-color: #fff;
-    height: 75px;
+    height: 60px;
     width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    align-self: center;
     border-bottom: 1px solid #fff;
     box-shadow: 5px 0 10px rgba(0,0,0,.3);
     position: relative;
@@ -40,7 +45,7 @@ body {
 .menu_items {
     display: flex;
     list-style: none;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 .menu_items li {
     border-radius: 3px;
@@ -48,9 +53,9 @@ body {
 }
 
 .menu_items li a{
-    padding: 7px 13px;
+    padding: 7px 7px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 15px;
     display: block;
     text-transform: uppercase;
     color: #000;
@@ -62,7 +67,7 @@ body {
 }
 .btn_menu {
     margin-right: 30px;
-    font-size: 25px;
+    font-size: 20px;
     color: #000;
     cursor: pointer;
     display: none;
@@ -140,13 +145,17 @@ h2 {
     color: #999;
 }   
 
-@media screen and (max-width: 952px) {
+@media screen and (max-width: 1200px) {
     .menu .logo {
         font-size: 30px;
         padding-left: 35px;
     }
     .menu_items li a {
-        font-size: 16px;
+        font-size: 14px;
+    }
+    .menu_items li {
+        border-radius: 0px;
+        margin: 0 0;
     }
 }
 
@@ -175,7 +184,7 @@ h2 {
         background: none;
     }
     .menu_items li a {
-        font-size: 20px;
+        font-size: 16px;
         color: #fff;
         font-weight: bold;
     }

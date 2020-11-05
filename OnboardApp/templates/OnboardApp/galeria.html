@@ -43,9 +43,11 @@
                 {% else %}
                 <img src="{{ i.imagen.url}}" style="filter: grayscale(100%);">
                 {% endif %}
-                <p class="precio ">Precio: ${{ i.precio | intcomma}}</p>
-                <p class="nombre">Nombre: {{ i.nombre | capfirst}}</p>
-                <p class="pais">Pais: {{ i.pais | title}}</p>
+                
+                <p class="nombre">{{ i.nombre | capfirst}}</p>
+                <p class="pais">{{ i.pais | title}}</p>
+                <p class="precio ">${{ i.precio | intcomma}}</p>
+                
             </a>
             {% endif %}
         {% endfor %}

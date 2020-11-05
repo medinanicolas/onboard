@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pais,Lugar,Contacto
+from .models import Pais,Lugar,Contacto,Resena
 from .forms import LugarForm
 # Register your models here.
 class LugaresAdmin(admin.ModelAdmin):
@@ -13,3 +13,4 @@ class LugaresAdmin(admin.ModelAdmin):
 admin.site.register(Pais)
 admin.site.register(Lugar,LugaresAdmin)
 admin.site.register(Contacto)
+admin.site.register(Resena)
