@@ -42,7 +42,29 @@
         </div>
     </section>
   <!-- Lugares -->
-
+  {% load humanize %}
+  <section id="testimonials">
+    <div class="contenedor">
+        <p class="titulo">Lugares</p>
+        <hr>
+    </div>
+</section>
+    <div id="contenido">
+        <div class="galeria">
+            {% load humanize %}
+            {% for i in lugares %}
+                {% if i.imagen %}
+                    <div class="pubs">
+                        <img class="foto" src="{{  i.imagen.url }}">
+                        <li class="precio">${{ i.precio | intcomma  }}</li>
+                        <li class="titulo">{{ i.nombre }}</li>
+                        <li class="parrafo">{{ i.descripcion }}</li>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+  
   <!-- Testimonios -->
   <section id="testimonials">
     <div class="contenedor">
@@ -51,34 +73,24 @@
         <h2>Qué Opinan Nuestros Clientes</h2>
         <br><br><br><br>
         <div class="contenedor-testimonials">
+            {% for r in resenas %}
             <div class="testimonial">
-                <img src="{% static 'OnboardApp/img/estrellas.png' %}" alt="">
-                <h3>“Excelente. Muy recomendado!”</h3>
-                <p class="texto">“Excelente atención. Mucha amabilidad y empatía, full recomendado para descansar un ratito junto a tu familia. Ma-ra-vi-llo-so.“
-                </p>
-                <p class="nombre">Leandra</p>
+                <h3>"{{ r.titulo}}"</h3>
+                {% if r.estrellas == 0 %}
+                <img src="{% static 'OnboardApp/img/estrellas/estrella1.png' %}" alt="">
+                {% elif r.estrellas  == 1%}
+                <img src="{% static 'OnboardApp/img/estrellas/estrella2.png' %}" alt="">
+                {% elif r.estrellas  == 2%}
+                <img src="{% static 'OnboardApp/img/estrellas/estrella3.png' %}" alt="">
+                {% elif r.estrellas  == 3%}
+                <img src="{% static 'OnboardApp/img/estrellas/estrella4.png' %}" alt="">
+                {% elif r.estrellas  == 4%}
+                <img src="{% static 'OnboardApp/img/estrellas/estrella5.png' %}" alt="">
+                {% endif %}
+                <p class="texto">{{ r.descripcion}}</p>
+                <p class="nombre">{{ r.nombre }}</p>
             </div>
-            <div class="testimonial">
-                <img src="{% static 'OnboardApp/img/estrellas.png' %}" alt="">
-                <h3>“Muy buena experiencia”</h3>
-                <p class="texto">“Casi me comen los canibales pero como buen futre que soy fui protegido por el brazo armado del capitalismo. Excelente servicio!“
-                </p>
-                <p class="nombre">Maximiliano Angelini Angelini</p>
-            </div>
-            <div class="testimonial">
-                <img src="{% static 'OnboardApp/img/estrellas.png' %}" alt="">
-                <h3>“Precio y calidad</h3>
-                <p class="texto">“Muy accesible, me sentí como nunca antes.“
-                </p>
-                <p class="nombre">José</p>
-            </div>
-            <div class="testimonial">
-                <img src="{% static 'OnboardApp/img/estrellas.png' %}" alt="">
-                <h3>“Espectacular”</h3>
-                <p class="texto">“Recomiendo OnBoard 100% en un link.“
-                </p>
-                <p class="nombre">Bot Martinez</p>
-            </div>
+            {% endfor %}
         </div>
     </div>
   </section>  

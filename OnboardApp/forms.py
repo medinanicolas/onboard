@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contacto,Lugar
+from .models import Contacto,Lugar,Resena
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .validators import MaxSizeFileValidator
@@ -9,6 +9,13 @@ class ContactoForm(forms.ModelForm):
     class Meta:
         model = Contacto
         # fields = ["nombre","correo","tipo_consulta","mensaje","avisos"]
+        fields = '__all__'
+
+
+class ResenaForm(forms.ModelForm):
+
+    class Meta:
+        model = Resena
         fields = '__all__'
 
 class LugarForm(forms.ModelForm):
