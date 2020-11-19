@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse,redirect,get_object_or_404
-from .models import Lugar
-from .forms import ContactoForm,LugarForm,CustomUserCreationForm
+from .models import Lugar,Resena
+from .forms import ContactoForm,LugarForm,CustomUserCreationForm,ResenaForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
@@ -11,8 +11,15 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 # Create your views here.
 
 def inicio(request):
+    resenas = Resena.objects.all()
+    lugares = Lugar.objects.all().order_by('-id')[:4]
+    data = {
+        'resenas':resenas,
+        'lugares':lugares
+    }
 
-    return render(request, "OnboardApp/inicio.html")
+    return render(request, "OnboardApp/inicio.html",data)
+    
 
 def galeria(request):
     lugares = Lugar.objects.all()
@@ -54,6 +61,21 @@ def agregar_lugar(request):
             data["form"] = formulario
  
     return render(request, "OnboardApp/lugares/agregar.html",data)
+
+@login_required
+def agregar_resena(request):
+    data = {
+        'form': ResenaForm()
+    }
+    if request.method == 'POST':
+        formulario = ResenaForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request,"Reseña enviada")
+        else:
+            data["form"] = formulario
+ 
+    return render(request, "OnboardApp/resenas/agregar.html",data)
 @permission_required('OnboardApp.view_lugar')
 def listar_lugares(request):
     lugares = Lugar.objects.all()

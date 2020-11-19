@@ -91,6 +91,41 @@ hr{
     width: 45%;
 }
 
+/* MENU  */
+
+#contenido {
+    width: 90%;
+    margin:auto;
+    max-width: 1280px;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+.galeria img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.pubs{
+    list-style: none;
+}
+.pubs .precio{
+    color: #c29d62;
+    font-size: 24px;
+}
+.pubs .parrafo {
+    color: #939393;
+    line-height: 30px;
+}
+.pubs .titulo {
+    font-family: 'Playfair Display';
+    font-size: 24px;
+    font-weight: 100;
+}
+
 /* TESTIMONIALS */
 
 #testimonials {

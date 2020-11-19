@@ -11,4 +11,5 @@ urlpatterns = [
     path('modificar-lugar/<id>/',views.modificar_lugar,name='Modificar_lugar'),
     path('eliminar-lugar/<id>/',views.eliminar_lugar,name='Eliminar_lugar'),
     path('registro/',views.registro,name='Registro'),
+    path('agregar-resena/',views.agregar_resena,name='Agregar_resena'),
 ]
