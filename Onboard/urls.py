@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('OnboardApp.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('oauth/', include('social_django.urls', namespace='social')),
     path('reset_password/',
      auth_views.PasswordResetView.as_view(template_name="OnboardApp/password_reset.html"),
      name="reset_password"),

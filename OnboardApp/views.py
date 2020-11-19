@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required,permission_required
 from django.contrib.auth.mixins import UserPassesTestMixin
 
+from rest_framework import viewsets
+from .serializers import LugarSerializer
 # Create your views here.
 
 def inicio(request):
@@ -133,3 +135,8 @@ def registro(request):
             return redirect(to="Inicio")
         data["form"] = formulario
     return render(request, 'registration/registro.html',data)
+
+
+class LugarViewSet(viewsets.ModelViewSet):
+    queryset = Lugar.objects.all()
+    serializer_class = LugarSerializer
