@@ -1,6 +1,12 @@
-from django.urls import path
+from django.urls import path,include
 from OnboardApp import views
 
+from .views import LugarViewSet
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+
+router.register('lugares',LugarViewSet)
 
 urlpatterns = [
     path('',views.inicio,name="Inicio"),
@@ -12,4 +18,5 @@ urlpatterns = [
     path('eliminar-lugar/<id>/',views.eliminar_lugar,name='Eliminar_lugar'),
     path('registro/',views.registro,name='Registro'),
     path('agregar-resena/',views.agregar_resena,name='Agregar_resena'),
+    path('api/',include(router.urls))
 ]

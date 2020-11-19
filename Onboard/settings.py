@@ -26,13 +26,16 @@ SECRET_KEY = '5@hi(*&6eh=&zh7%zey=%25z0d)s7bco^-$gq-!lwc15ghhbdv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '399019474629680'
+SOCIAL_AUTH_FACEBOOK_SECRET = '3cac6b71f2e40dfda762051e03c78295'
 
 # Application definition
 
@@ -48,6 +51,8 @@ INSTALLED_APPS = [
     'colorfield',
     'django.contrib.humanize',
     'crispy_forms',
+    'rest_framework',
+    'social_django',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -61,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'Onboard.urls'
@@ -76,6 +82,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -145,3 +153,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'nascorman@gmail.com'
 EMAIL_HOST_PASSWORD = 'C1vispacem#'
+
+
+AUTHENTICATION_BACKENDS = (
+'social_core.backends.facebook.FacebookOAuth2',
+'django.contrib.auth.backends.ModelBackend',
+)
